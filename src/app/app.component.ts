@@ -36,11 +36,6 @@ export class AppComponent {
 
   getCollegeList() {
   	const elem = document.querySelector("#thiselement");
-// optional chaining		
-
-
-
-  	// body...
   	this.collegeServe.getColleges(1).subscribe(data=>{
   		this.alldata = data.data;
   		for(var i =0;i<10;i++){
@@ -52,12 +47,15 @@ export class AppComponent {
 
   addMore() {
   	if(this.colleges.length>=50)
+  	{
+  		console.log("return from here");
   		return;
+  	}
   	for(var i =this.total;i<this.total+10;i++){
   			this.colleges.push(this.alldata[i]);
   			
   		}
 		this.total = this.total+10;
     // this.removeEventListener("click", handleClick);
-}
+	}
 }
