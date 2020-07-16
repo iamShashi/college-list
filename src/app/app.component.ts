@@ -26,12 +26,9 @@ export class AppComponent {
 
 
   scrollEvent = (event: any): void => {
-	console.log(document.documentElement.scrollHeight);
-	console.log(document.documentElement.clientHeight);
-	console.log(document.documentElement.scrollTop);
-	console.log(document.documentElement.scrollTop +10 + document.documentElement.clientHeight >= document.documentElement.scrollHeight);
+	
+	
 	if (document.documentElement.scrollTop + 10+document.documentElement.clientHeight >= document.documentElement.scrollHeight) {
-		console.log("hello");
 		this.addMore();
 		
 	}	
@@ -39,8 +36,7 @@ export class AppComponent {
 
   getCollegeList() {
   	const elem = document.querySelector("#thiselement");
-// optional chaining
-console.log(elem);
+// optional chaining		
 
 
 
@@ -51,18 +47,17 @@ console.log(elem);
   			this.colleges.push(this.alldata[i]);
   			this.total = 10;
   		}
-  		console.log(this.colleges);
   	})
   }
 
   addMore() {
+  	if(this.colleges.length>=50)
+  		return;
   	for(var i =this.total;i<this.total+10;i++){
   			this.colleges.push(this.alldata[i]);
   			
   		}
-  		console.log(this.colleges);
 		this.total = this.total+10;
-    console.log("added!");
     // this.removeEventListener("click", handleClick);
 }
 }
