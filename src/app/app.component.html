@@ -1,21 +1,66 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
+<div class="container" id="thiselement">
+  <span class="college-text">Colleges in North India</span>
+  <div class="content">
+  <!-- <div class="row" *ngFor="let item of colleges; index as i"> -->
+    <div class="card" *ngFor="let item of colleges; index as i">
+      <div class="card-top">
+        
+            <img class="card-img" src="assets/college_02.jpg">
+            <div class="card-top-overlay">
+            <div class="statusbox"><div class="promotedbox"><div class="promotedboxinside" *ngIf="item.promoted">Promoted</div></div></div>
+            <div class="ratingboxdiv"><div class="ratingbox"><div class="verygood"><span>3.9/5</span><br><span>Very Good</span></div></div></div>
+            <div class="collegedetailsdiv"><div class="collegedetails" *ngFor="let tags of item.tags;index as tg"><div class="college-tags">{{tags | titlecase}}</div></div><span class="right-side-text">#{{item.ranking}}</span></div>
+            </div>
+        </div>
+        <div class="card-bottom">
+          <div class="column-1">
+            <div class="column-name-div">
+              <div class="college-name">{{item.college_name}}</div><div class="star" style="margin-top: 12.2px;" *ngFor="let i of [].constructor(item.rating)">&#9733;</div>
+              <span>
+              <div class="star-alt" style="margin-top: 12.2px;" *ngFor="let i of [].constructor(5-item.rating)">&#9734;</div>
+              </span>
+            </div>
+            <div class="column-location-div">
+              <div class="college-location"><span *ngFor="let np of item.nearest_place;index as npi" [ngClass]="npi != 0 ? 'different-class': 'main-class'">{{np}}</span></div>
+            </div>
+            <div class="column-nearby-div font-face">
+              <div class="nearby-location font-face" style="margin-top: 5%;">
+                <span style="font-weight: bold;color: #37b396;">93% Match :</span>
+                  <span class="different-class-2">
+                    <span style="font-weight: bold;color: #444444">{{item.famous_nearest_places | slice:0:7}}</span>
+                    <span>{{item.famous_nearest_places | slice:7:21}}</span>
+                    <span style="color: #4bb89e;">{{item.famous_nearest_places | slice:22:23}}</span>
+                    <span style="color: #444444;font-weight: bold;">{{item.famous_nearest_places | slice:23:28}}</span>
+                    <span>{{item.famous_nearest_places | slice:28:item.famous_nearest_places.length}}</span>
+                  </span>
+                </div>
+            </div>
+            <div class="offer font-face">
+              <span class="different-class-2" style="margin-left: 17px;">
+                <span>{{item.offertext | slice:0:5}}</span>
+                <span style="font-weight: bold;">
+                  <span>{{item.offertext | slice:5:7}}</span>
+                  <span style="color: #4bb89e;">{{item.offertext | slice:7:12}}</span>
+                  <span>{{item.offertext | slice:8:27}}</span>
+                  <span style="color: #4bb89e;">{{item.offertext | slice:27:31}}</span>
+                  <span>{{item.offertext | slice:31:item.offertext.length-6}}</span>
+                  <span style="color: #1999d2">{{item.offertext | slice:-6}}</span>{{places}}
+                </span>
+              </span>
+            </div>
+          </div>
+          <div class="column-2 font-face">
+            <div><s>₹6875</s><span class="discount-ribbon">{{item.discount}}</span></div>
+                    <div style="font-size: 26px;color: #dd1c26;font-weight: 800;">₹&nbsp;5,768</div>
+                    <div class="semester" style="font-size: 11px;">{{item.fees_cycle}}</div>
+                    <div class="Free-Cancellation"><span *ngFor="let am of item.amenties;index as it"><span *ngIf="it!=0">.</span>{{am}}</span></div>
+            </div>
+        </div>
+
+    </div>
+  </div>  
+  <!-- </div> -->
 </div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/cli">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
 
 <router-outlet></router-outlet>
